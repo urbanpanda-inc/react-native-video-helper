@@ -1,5 +1,5 @@
 {
-  "name": "urbanpanda-react-native-video-helper",
+  "name": "@urbanpanda-inc/react-native-video-helper",
   "title": "React Native Video Helper Urbanpanda Forked",
   "version": "1.4.4",
   "description": "Forked : React Native video helper library, to compress and trim videos.",
@@ -8,8 +8,8 @@
   "author": "Samin Shams",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/urbanpanda-inc/urbanpanda-react-native-video-helper.git",
-    "baseUrl": "https://github.com/urbanpanda-inc/urbanpanda-react-native-video-helper"
+    "url": "git+https://github.com/urbanpanda-inc/react-native-video-helper.git",
+    "baseUrl": "https://github.com/urbanpanda-inc/react-native-video-helper"
   },
   "keywords": [
     "react-native",

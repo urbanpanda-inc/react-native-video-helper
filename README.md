@@ -1,10 +1,10 @@
 
 # Urbanpanda Inc Fork Version
-# urbanpanda-react-native-video-helper
+# @urbanpanda-inc/react-native-video-helper
 
 ## Getting started
 
-`$ npm install urbanpanda-react-native-video-helper --save`
+`$ npm install @urbanpanda-inc/react-native-video-helper --save`
 
 ## Supported versions
 
@@ -16,7 +16,7 @@
 
 ### Automatic installation
 
-`$ react-native link urbanpanda-react-native-video-helper`
+`$ react-native link @urbanpanda-inc/react-native-video-helper`
 
 ### Manual installation
 
