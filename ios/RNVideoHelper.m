@@ -115,7 +115,7 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
         CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
         encoder.timeRange = exportTimeRange;
     }
-    // reject(@"test", [NSString stringWithFormat:@"duration = %f startT = %f endT = %f", duration, [startT floatValue], [startT floatValue]], nil);
+    reject(@"test", [NSString stringWithFormat:@"duration = %f startT = %f endT = %f", duration, [startT floatValue], [startT floatValue]], nil);
     
     encoder.videoSettings = @{
       AVVideoCodecKey: AVVideoCodecH264,
