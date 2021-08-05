@@ -3,7 +3,7 @@ require "json"
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 
 Pod::Spec.new do |s|
-  s.name         = package["name"]
+  s.name         = "react-native-video-helper"
   s.version      = package["version"]
   s.summary      = package["title"]
   s.description  = package["description"]
