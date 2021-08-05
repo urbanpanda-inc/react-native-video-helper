@@ -47,7 +47,7 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
     AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
     
     CMTime assetTime = [asset duration];
-    Float64 duration = CMTimeGetSeconds(assetTime);
+    Float64 duration = CMTimeGetSeconds(assetTime) * 1000;
     
     NSNumber *startT = @([options[@"startTime"] floatValue]);
     NSNumber *endT = @([options[@"endTime"] floatValue]);
@@ -91,8 +91,6 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
     CGFloat width = originalWidth * finalRatio;
     CGFloat height = originalHeight * finalRatio;
 
-    
-
     SDAVAssetExportSession *encoder = [SDAVAssetExportSession.alloc initWithAsset:asset];
     
     if (startT && [startT floatValue] > duration) {
@@ -105,16 +103,10 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
     }
     
     if (startT || endT) {
-        // CMTime startTime = CMTimeMake((startT) ? [startT floatValue] : 0, 1);
-        CMTime startTime = CMTimeMakeWithSeconds((startT) ? [startT floatValue] : 0, 1);
-        // CMTime stopTime = CMTimeMake((endT) ? [endT floatValue] : duration, 1);
-        CMTime stopTime = CMTimeMakeWithSeconds((endT) ? [endT floatValue] : duration, 1);
-        // CMTime stopTime = CMTimeMake(duration, 1);
-        // Float64 duration1 = CMTimeGetSeconds(startTime);
-        // Float64 duration2 = CMTimeGetSeconds(stopTime);
+        CMTime startTime = CMTimeMake((startT) ? [startT floatValue] : 0, 1000);
+        CMTime stopTime = CMTimeMake((endT) ? [endT floatValue] : duration, 1000);
         CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
         encoder.timeRange = exportTimeRange;
-        // reject(@"test", [NSString stringWithFormat:@"duration = %f startT = %f endT = %f", duration, duration1, duration2], nil);
     }
     
     encoder.videoSettings = @{
