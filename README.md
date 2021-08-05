@@ -1,6 +1,6 @@
 
 # Urbanpanda Inc Fork Version
-# react-native-video-helper
+# urbanpanda-react-native-video-helper
 
 ## Getting started
 
