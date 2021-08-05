@@ -91,7 +91,8 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
     CGFloat width = originalWidth * finalRatio;
     CGFloat height = originalHeight * finalRatio;
 
-    NSLog(@"duration = %f startT = %f endT = %f", duration, startT, endT);
+    reject(@"test", [NSString stringWithFormat:@"duration = %f startT = %f endT = %f", duration, startT, endT], nil);
+    
 
     SDAVAssetExportSession *encoder = [SDAVAssetExportSession.alloc initWithAsset:asset];
     
