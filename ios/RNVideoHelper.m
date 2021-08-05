@@ -48,12 +48,9 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
     
     CMTime assetTime = [asset duration];
     Float64 duration = CMTimeGetSeconds(assetTime);
-
     
-    // NSNumber *startT = @([options[@"startTime"] floatValue]);
-    // NSNumber *endT = @([options[@"endTime"] floatValue]);
-    Float64 startT = [options[@"startTime"] floatValue];
-    Float64 endT = [options[@"endTime"] floatValue];
+    NSNumber *startT = @([options[@"startTime"] floatValue]);
+    NSNumber *endT = @([options[@"endTime"] floatValue]);
     
     AVAssetTrack *videoTrack = [[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
 
@@ -98,25 +95,23 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
 
     SDAVAssetExportSession *encoder = [SDAVAssetExportSession.alloc initWithAsset:asset];
     
-    if (startT > duration) {
-    // if (startT && [startT floatValue] > duration) {
+    if (startT && [startT floatValue] > duration) {
         reject(@"start_time_error", @"Start time is longer than video duration", nil);
         return;
     }
     
-    // if (endT && [endT floatValue] > duration) {
-    if (endT > duration) {
+    if (endT && [endT floatValue] > duration) {
         endT = nil;
     }
     
     if (startT || endT) {
-        // CMTime startTime = CMTimeMake((startT) ? [startT floatValue] : 0, 1);
-        // CMTime stopTime = CMTimeMake((endT) ? [endT floatValue] : duration, 1);
-        CMTime startTime = CMTimeMake(startT, 1);
-        CMTime stopTime = CMTimeMake(endT, 1);
-        Float64 startTime1 = CMTimeGetSeconds(startTime);
-        Float64 endTime1 = CMTimeGetSeconds(endTime);
-        reject(@"test2", [NSString stringWithFormat:@"duration = %f startTime = %f endTime = %f", duration, startTime1, endTime1, nil);
+        CMTime startTime = CMTimeMake((startT) ? [startT floatValue] : 0, 1);
+        CMTime stopTime = CMTimeMake((endT) ? [endT floatValue] : duration, 1);
+        CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
+        encoder.timeRange = exportTimeRange;
+    } else {
+        CMTime startTime = CMTimeMake(0, 1);
+        CMTime stopTime = CMTimeMake(duration, 1);
         CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
         encoder.timeRange = exportTimeRange;
     }
