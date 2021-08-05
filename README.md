@@ -1,9 +1,10 @@
 
+# Urbanpanda Inc Fork Version
 # react-native-video-helper
 
 ## Getting started
 
-`$ npm install react-native-video-helper --save`
+`$ npm install urbanpanda-react-native-video-helper --save`
 
 ## Supported versions
 
@@ -15,14 +16,14 @@
 
 ### Automatic installation
 
-`$ react-native link react-native-video-helper`
+`$ react-native link urbanpanda-react-native-video-helper`
 
 ### Manual installation
 
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-video-helper` and add `RNVideoHelper.xcodeproj`
+2. Go to `node_modules` ➜ `urbanpanda-react-native-video-helper` and add `RNVideoHelper.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNVideoHelper.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
 
