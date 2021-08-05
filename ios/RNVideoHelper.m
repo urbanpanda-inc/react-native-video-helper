@@ -91,7 +91,6 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
     CGFloat width = originalWidth * finalRatio;
     CGFloat height = originalHeight * finalRatio;
 
-    reject(@"test", [NSString stringWithFormat:@"duration = %f startT = %f endT = %f", duration, startT, endT], nil);
     
 
     SDAVAssetExportSession *encoder = [SDAVAssetExportSession.alloc initWithAsset:asset];
@@ -110,7 +109,13 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
         CMTime stopTime = CMTimeMake((endT) ? [endT floatValue] : duration, 1);
         CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
         encoder.timeRange = exportTimeRange;
+    } else {
+        CMTime startTime = CMTimeMake(0, 1);
+        CMTime stopTime = CMTimeMake(duration, 1);
+        CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
+        encoder.timeRange = exportTimeRange;
     }
+    // reject(@"test", [NSString stringWithFormat:@"duration = %f startT = %f endT = %f", duration, [startT floatValue], [startT floatValue]], nil);
     
     encoder.videoSettings = @{
       AVVideoCodecKey: AVVideoCodecH264,
