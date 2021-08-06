@@ -64,11 +64,11 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
     if ([options[@"quality"] isEqual: @"medium"]) {
         maxWidth = 1280;
         maxHeight = 1280;
-        bitrate = 1900000;
+        bitrate = 3000000;
     } else if ([options[@"quality"] isEqual: @"high"]) {
         maxWidth = 1920;
         maxHeight = 1920;
-        bitrate = 2600000;
+        bitrate = 5000000;
     }
     
     CGFloat originalWidth = naturalSize.width;
@@ -103,8 +103,8 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
     }
     
     if (startT || endT) {
-        CMTime startTime = CMTimeMake((startT) ? [startT floatValue] : 0, 1);
-        CMTime stopTime = CMTimeMake((endT) ? [endT floatValue] : duration, 1);
+        CMTime startTime = CMTimeMake((startT) ? [startT floatValue] * 10 : 0, 10);
+        CMTime stopTime = CMTimeMake((endT) ? [endT floatValue] * 10 : duration * 10, 10);
         CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
         encoder.timeRange = exportTimeRange;
     }
