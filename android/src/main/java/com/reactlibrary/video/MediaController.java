@@ -358,12 +358,12 @@ public class MediaController {
             case COMPRESS_QUALITY_MEDIUM:
                 maxWidth = 1280;
                 maxHeight = 1280;
-                bitrate = 1900000;
+                bitrate = 3000000;
                 break;
             case COMPRESS_QUALITY_HIGH:
                 maxWidth = 1920;
                 maxHeight = 1920;
-                bitrate = 2600000;
+                bitrate = 5000000;
                 break;
         }
 
