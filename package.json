@@ -1,7 +1,7 @@
 {
   "name": "@urbanpanda-inc/react-native-video-helper",
   "title": "React Native Video Helper Urbanpanda Forked",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "description": "Forked : React Native video helper library, to compress and trim videos.",
   "main": "index.js",
   "licence": "MIT",

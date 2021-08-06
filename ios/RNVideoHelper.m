@@ -47,7 +47,7 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
     AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
     
     CMTime assetTime = [asset duration];
-    Float64 duration = CMTimeGetSeconds(assetTime) * 1000;
+    Float64 duration = CMTimeGetSeconds(assetTime);
     
     NSNumber *startT = @([options[@"startTime"] floatValue]);
     NSNumber *endT = @([options[@"endTime"] floatValue]);
@@ -102,12 +102,10 @@ RCT_EXPORT_METHOD(compress:(NSString *)source options:(NSDictionary *)options re
         endT = nil;
     }
     
-    if (startT || endT) {
-        CMTime startTime = CMTimeMake((startT) ? [startT floatValue] : 0, 1000);
-        CMTime stopTime = CMTimeMake((endT) ? [endT floatValue] : duration, 1000);
-        CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
-        encoder.timeRange = exportTimeRange;
-    }
+    CMTime startTime = CMTimeMake((startT) ? [startT floatValue] * 1000 : 0, 1000);
+    CMTime stopTime = CMTimeMake((endT) ? [endT floatValue] * 1000 : duration * 1000, 1000);
+    CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
+    encoder.timeRange = exportTimeRange;
     
     encoder.videoSettings = @{
       AVVideoCodecKey: AVVideoCodecH264,
